@@ -7,6 +7,8 @@ define y = Character("You")
 define w = Character("Pie Wizard")
 define d = Character("Pie Demon")
 
+default normalEnd = False # variable for what ending you get
+
 # The game starts here.
 label start:
 
@@ -27,7 +29,7 @@ label start:
 
     "...is to successfully bake a pie!"
 
-    show eileen happy # REPLACE WITH WIZARD NEUTRAL FACE (or excited?)
+    show piewizardNeutral
     with dissolve
 
     w "Up bright and early today, I see! Are you ready for your final test?"
@@ -59,8 +61,9 @@ label start:
                 jump magical # Goes to the section labelled magical, aka the magic section.
 
 label physical:
-
-    hide eileen happy # REPLACE WITH WIZARD. Removes wizard from screen
+ 
+    $ normalEnd = True # Sets normal ending variable to true
+    hide piewizardNeutral
     with fade
     
     "You recall an ancient recipe book, one that has been passed down through generations of your family."
@@ -69,7 +72,7 @@ label physical:
     
     "You rush off to find the book, then head for the kitchen..."
 
-    scene bg room # REPLACE WITH KITCHEN!
+    scene bgKitchen # shows kitchen
     with dissolve
     
     "With the book in hand, you flip through the pages, and..."
@@ -121,8 +124,8 @@ label physical:
 
 
 label magical:
-    
-    hide eileen happy # REPLACE WITH WIZARD. Removes wizard from screen
+
+    hide piewizardNeutral # Removes wizard from screen
     with fade
     
     "You recall an ancient spellbook that speaks of a being that may assist you in this."
@@ -131,8 +134,8 @@ label magical:
     
     "You rush off and find the tome, then head to the kitchen..."
     
-    scene bg room # REPLACE WITH KITCHEN!
-    with dissolve
+    scene bgKitchen # Shows the kitchen
+    with fade
 
     "With the ancient spellbook in hand, you flip through the pages, and recite the incantation..."
     
@@ -140,8 +143,8 @@ label magical:
     
     y "With crust so golden, filling divine, Come forth, oh spirit, make your presence mine!"
     
-    show piedemon confused #((...appearing on screen with a bounce, confused))
-    with fade # May delete this.
+    show piedemonConfused #((...appearing on screen with a bounce, confused))
+    with dissolve
     
     d "Hey! Whoa, whoa, whoa! You summoned me? A pie demon? You think I'm just gonna pop up and serve you dessert? This ain't no bakery, sweetheart!"
     
@@ -149,8 +152,7 @@ label magical:
     
     y "I just need some help in baking this pie, sir. Maybe some evil power on the side."
     
-    show piedemon neutral
-    with dissolve
+    show piedemonNeutral
     
     y "Evil power? You think I got that cookin' in my oven? I'm here for the pies, capisce?"
     
@@ -164,13 +166,11 @@ label magical:
     
     y "R-respect…?"
     
-    show piedemon happy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
-    with dissolve 
+    show piedemonHappy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
     
     d "Yeah! I'm not just some run-of-the-mill pastry chef, okay? I make the best pie in the whole underworld! You treat me right, and I'll treat you right."
     
-    show piedemon confused #this pose looks the most like a focused pose, so I swapped it. See above!
-    with dissolve
+    show piedemonConfused #this pose looks the most like a focused pose, so I swapped it. See above!
     
     d "Now, where's a focus? I can't just make magic happen without a focus, ya know?"
     
@@ -181,8 +181,7 @@ label magical:
     "After some chanting and with a bright flash of light..."
     
     #((Show pie.jpeg, switch to pie demon’s celebratory pose))
-    show piedemon celebratory #Not sure how to show pie yet so I'm just showing the demon
-    with dissolve
+    show piedemonCelebratory #Not sure how to show pie yet so I'm just showing the demon
 
     d "One magic pie, complete!" 
     
@@ -201,11 +200,71 @@ label magical:
 
     "Even if you like how it looks, you feel a little nervous about his judgement."
 
+    scene black
+
+    "..."
+
     jump ending
 
 label ending:
+
+    if normalEnd: # Shows ending for physical end
+
+        scene bgKitchen
+        with fade
+        show piewizardNeutral
+
+        w "From the sounds and smell of it, you appear to have been hard at work! Let's see if this pie is up to snuff."
+
+        "The Great Wizard takes the pie, and gives it a drawn-out sniff. His nose wrinkles at the stench of it."
+
+        show piewizardScrutinizing
+        
+        w "Eeeuugh!"
+        
+        "You wince at his comment, but wait for him to try it."
+        
+        show piewizardNeutral
+        
+        "The wizard takes a single bite, tearing the half-burnt, half-undercooked piece from the rest of the pie."
+        
+        show piewizardScrutinizing
+        
+        w "Hmmm... the texture is all over the place… a bit crunchy, yet a bit runny…"
+        
+        y "Is... is that so? I was sure I put the oven at the right temperature..."
+        
+        "The wizard swallows the bite, and he winces as it hits his stomach."
+        
+        show piewizardApproving
+        
+        w "Er-hem! Well, dear apprentice, I wasn't expecting you to go for a Helmshire Pie!"
+        
+        y "...A what now."
+        
+        w "Why, a Helmshire Pie! The Helmsmen love everything stinky, from their cheeses to their pies, and it adds quite the flavor."
+        
+        w "And the texture! You got it perfectly, the runny filling complementing the tack-like crust is impressive."
+        
+        "You remember back to the early days of your training, glossing over an encyclo-pie-dia..."
+        
+        "...and laughing at the picture of a Helmshire pie factory. The whole setup looked so cartoonish."
+        
+        y "...Ah, yes! I'm, er, glad you could tell what I was going for!"
+        
+        show piewizardNeutral
+        
+        w "Either way, it's suffice to say that you have passed your trial. Good work!"
+
+    else: # Shows the magic ending
+        
+        scene bgKitchen
+        with fade
+        show piewizardNeutral
+        
+        "Magic ending starts here"
     
-    "End game here! Planning to add an if statement or maybe just separate these into physical and magical ending labels."
+    "You beam back at him. Either way, it seems all your training paid off well!"
 
     # This ends the game.
     return
