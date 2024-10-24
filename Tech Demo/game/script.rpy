@@ -20,9 +20,9 @@ label start:
 
     "And now you must put them to the test."
 
-    "Your continued apprenticeship under the (Great Wizard) depends on it!"
+    "Your continued apprenticeship under the Great Wizard depends on it!"
 
-    "The (Wizard's) test for you…"
+    "The Wizard's test for you..."
 
     scene bgroom # REPLACE WITH FIRST BACKGROUND
     with fade # Saw this in The Question so I'm doing it here
@@ -64,7 +64,7 @@ label physical:
  
     $ normalEnd = True # Sets normal ending variable to true
     hide piewizardneutral
-    with fade
+    with dissolve
     
     "You recall an ancient recipe book, one that has been passed down through generations of your family."
     
@@ -98,7 +98,7 @@ label physical:
     
     "You mix your raspberries, sugar, lemon juice, and cornstarch together and pour the mixture into your pie plate."
     
-    y "Wow, this is really starting to come together…"
+    y "Wow, this is really starting to come together..."
     
     #((pie crust.jpg flies in from bottom of screen and fades out shortly after))
     
@@ -134,7 +134,7 @@ label physical:
 label magical:
 
     hide piewizardneutral # Removes wizard from screen
-    with fade
+    with dissolve
     
     "You recall an ancient spellbook that speaks of a being that may assist you in this."
     
@@ -174,7 +174,7 @@ label magical:
     
     d "But first you gotta show me a little respect!"
     
-    y "R-respect…?"
+    y "R-respect...?"
     
     show piedemonhappy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
     hide piedemonneutral
@@ -192,12 +192,17 @@ label magical:
     
     "After some chanting and with a bright flash of light..."
     
-    #((Show pie.jpeg, switch to pie demon’s celebratory pose))
-    show piedemoncelebratory #Not sure how to show pie yet so I'm just showing the demon
     hide piedemonconfused
+    with dissolve
+    show applepie
+    with dissolve
 
     d "One magic pie, complete!" 
     
+    hide applepie
+    with dissolve
+    show piedemoncelebratory #Not sure how to show pie yet so I'm just showing the demon
+
     d "But listen, this pie's got a mind of its own. I mean, look at it! It's glistening like it's ready for a Broadway show."
     
     d "Plus, I put a little extra spice in there."
@@ -232,33 +237,33 @@ label ending:
 
         "The Great Wizard takes the pie, and gives it a drawn-out sniff. His nose wrinkles at the stench of it."
 
+        hide piewizardneutral
         show piewizardscrutinizing
         with dissolve
-        hide piewizardneutral
         
         w "Eeeuugh!"
         
         "You wince at his comment, but wait for him to try it."
         
+        hide piewizardscrutinizing
         show piewizardneutral
         with dissolve
-        hide piewizardscrutinizing
         
         "The wizard takes a single bite, tearing the half-burnt, half-undercooked piece from the rest of the pie."
         
+        hide piewizardneutral
         show piewizardscrutinizing
         with dissolve
-        hide piewizardneutral
         
-        w "Hmmm... the texture is all over the place… a bit crunchy, yet a bit runny…"
+        w "Hmmm... the texture is all over the place... a bit crunchy, yet a bit runny..."
         
         y "Is... is that so? I was sure I put the oven at the right temperature..."
         
         "The wizard swallows the bite, and he winces as it hits his stomach."
         
+        hide piewizardscrutinizing
         show piewizardapproving
         with dissolve
-        hide piewizardscrutinizing
         
         w "Er-hem! Well, dear apprentice, I wasn't expecting you to go for a Helmshire Pie!"
         
@@ -274,9 +279,9 @@ label ending:
         
         y "...Ah, yes! I'm, er, glad you could tell what I was going for!"
         
+        hide piewizardapproving
         show piewizardneutral
         with dissolve
-        hide piewizardapproving
         
         w "Either way, it's suffice to say that you have passed your trial. Good work!"
     else: # Shows the magic ending
