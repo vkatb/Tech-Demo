@@ -13,6 +13,7 @@ default normalEnd = False # variable for what ending you get
 label start:
 
     scene black
+    stop music fadeout 1.0
     
     "It's finally the day."
 
@@ -26,6 +27,7 @@ label start:
 
     scene bgroom # REPLACE WITH FIRST BACKGROUND
     with fade # Saw this in The Question so I'm doing it here
+    play music "MainMusic.mp3" loop fadein 1.0 
 
     "...is to successfully bake a pie!"
 
@@ -127,6 +129,8 @@ label physical:
 
     "Even if you like how it looks, you feel a little nervous about his judgement."
 
+    stop music fadeout 1.0
+
     jump ending
 
 
@@ -146,6 +150,8 @@ label magical:
     with fade
 
     "With the ancient spellbook in hand, you flip through the pages, and recite the incantation..."
+
+    stop music fadeout 1.0
     
     y "In shadows deep where secrets lie, I call upon the pie demon nigh."
     
@@ -226,6 +232,8 @@ label magical:
     jump ending
 
 label ending:
+
+    play music "MainMusic.mp3" loop fadein 1.0
 
     if normalEnd: # Shows ending for physical end
 
@@ -324,6 +332,8 @@ label ending:
 
     
     "You beam back at him. Either way, it seems all your training paid off well!"
+
+    stop music fadeout 1.0
 
     # This ends the game.
     return
