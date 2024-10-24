@@ -29,7 +29,7 @@ label start:
 
     "...is to successfully bake a pie!"
 
-    show piewizardNeutral
+    show piewizardneutral
     with dissolve
 
     w "Up bright and early today, I see! Are you ready for your final test?"
@@ -63,7 +63,7 @@ label start:
 label physical:
  
     $ normalEnd = True # Sets normal ending variable to true
-    hide piewizardNeutral
+    hide piewizardneutral
     with fade
     
     "You recall an ancient recipe book, one that has been passed down through generations of your family."
@@ -125,7 +125,7 @@ label physical:
 
 label magical:
 
-    hide piewizardNeutral # Removes wizard from screen
+    hide piewizardneutral # Removes wizard from screen
     with fade
     
     "You recall an ancient spellbook that speaks of a being that may assist you in this."
@@ -143,7 +143,7 @@ label magical:
     
     y "With crust so golden, filling divine, Come forth, oh spirit, make your presence mine!"
     
-    show piedemonConfused #((...appearing on screen with a bounce, confused))
+    show piedemonconfused #((...appearing on screen with a bounce, confused))
     with dissolve
     
     d "Hey! Whoa, whoa, whoa! You summoned me? A pie demon? You think I'm just gonna pop up and serve you dessert? This ain't no bakery, sweetheart!"
@@ -152,7 +152,8 @@ label magical:
     
     y "I just need some help in baking this pie, sir. Maybe some evil power on the side."
     
-    show piedemonNeutral
+    show piedemonneutral
+    hide piedemonconfused
     
     y "Evil power? You think I got that cookin' in my oven? I'm here for the pies, capisce?"
     
@@ -166,11 +167,13 @@ label magical:
     
     y "R-respect…?"
     
-    show piedemonHappy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
-    
+    show piedemonhappy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
+    hide show piedemonneutral
+
     d "Yeah! I'm not just some run-of-the-mill pastry chef, okay? I make the best pie in the whole underworld! You treat me right, and I'll treat you right."
     
-    show piedemonConfused #this pose looks the most like a focused pose, so I swapped it. See above!
+    show piedemonconfused #this pose looks the most like a focused pose, so I swapped it. See above!
+    hide piedemonhappy
     
     d "Now, where's a focus? I can't just make magic happen without a focus, ya know?"
     
@@ -181,7 +184,8 @@ label magical:
     "After some chanting and with a bright flash of light..."
     
     #((Show pie.jpeg, switch to pie demon’s celebratory pose))
-    show piedemonCelebratory #Not sure how to show pie yet so I'm just showing the demon
+    show piedemoncelebratory #Not sure how to show pie yet so I'm just showing the demon
+    hide piedemonconfused
 
     d "One magic pie, complete!" 
     
@@ -193,7 +197,7 @@ label magical:
 
     "The Pie Demon grins wordlessly, then dissappears from sight."
     
-    hide piedemon celebratory
+    hide piedemoncelebratory
     with dissolve
 
     "Now it's time to show this demonic pie you have off to the Wizard..."
@@ -212,23 +216,29 @@ label ending:
 
         scene bgKitchen
         with fade
-        show piewizardNeutral
+        show piewizardneutral
 
         w "From the sounds and smell of it, you appear to have been hard at work! Let's see if this pie is up to snuff."
 
         "The Great Wizard takes the pie, and gives it a drawn-out sniff. His nose wrinkles at the stench of it."
 
-        show piewizardScrutinizing
+        show piewizardscrutinizing
+        with dissolve
+        hide piewizardneutral
         
         w "Eeeuugh!"
         
         "You wince at his comment, but wait for him to try it."
         
-        show piewizardNeutral
+        show piewizardneutral
+        with dissolve
+        hide piewizardscrutinizing
         
         "The wizard takes a single bite, tearing the half-burnt, half-undercooked piece from the rest of the pie."
         
-        show piewizardScrutinizing
+        show piewizardscrutinizing
+        with dissolve
+        hide piewizardneutral
         
         w "Hmmm... the texture is all over the place… a bit crunchy, yet a bit runny…"
         
@@ -236,7 +246,9 @@ label ending:
         
         "The wizard swallows the bite, and he winces as it hits his stomach."
         
-        show piewizardApproving
+        show piewizardapproving
+        with dissolve
+        hide piewizardscrutinizing
         
         w "Er-hem! Well, dear apprentice, I wasn't expecting you to go for a Helmshire Pie!"
         
@@ -252,15 +264,16 @@ label ending:
         
         y "...Ah, yes! I'm, er, glad you could tell what I was going for!"
         
-        show piewizardNeutral
+        show piewizardneutral
+        with dissolve
+        show piewizardapproving
         
         w "Either way, it's suffice to say that you have passed your trial. Good work!"
-
     else: # Shows the magic ending
         
         scene bgKitchen
         with fade
-        show piewizardNeutral
+        show piewizardneutral
         
         "Magic ending starts here"
     
