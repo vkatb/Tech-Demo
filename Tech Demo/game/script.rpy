@@ -24,7 +24,7 @@ label start:
 
     "The (Wizard's) test for you…"
 
-    scene bg room # REPLACE WITH FIRST BACKGROUND
+    scene bgroom # REPLACE WITH FIRST BACKGROUND
     with fade # Saw this in The Question so I'm doing it here
 
     "...is to successfully bake a pie!"
@@ -72,8 +72,8 @@ label physical:
     
     "You rush off to find the book, then head for the kitchen..."
 
-    scene bgKitchen # shows kitchen
-    with dissolve
+    scene bgkitchen # shows kitchen
+    with fade
     
     "With the book in hand, you flip through the pages, and..."
     
@@ -83,13 +83,18 @@ label physical:
     
     "You place one pie crust in the bottom of a 9-inch pie plate and crimp to your desire."
     
-    #((lemons.jpeg flies in from bottom of screen and fades out shortly after))
-    
+    show lemoningredient
+    with dissolve
+    play sound "CuttingFood.mp3" fadein 0.5 fadeout 0.5
+
     "You juice your lemons until you have 15mL exactly of lemon juice."
     
     #((raspberries.jpeg flies in from bottom of screen and fades out shortly after))
     #((sugar.jpeg flies in from bottom of screen and fades out shortly after))
     #((cornstarch.jpeg flies in from bottom of screen and fades out shortly after))
+    hide lemoningredient
+    show ourpowerscombined
+    with dissolve
     
     "You mix your raspberries, sugar, lemon juice, and cornstarch together and pour the mixture into your pie plate."
     
@@ -97,6 +102,8 @@ label physical:
     
     #((pie crust.jpg flies in from bottom of screen and fades out shortly after))
     
+    hide ourpowerscombined
+
     "You top the pie with a second crust."
     
     y "Hmm... I need to put holes in the top so it doesn't explode in the oven."
@@ -111,7 +118,8 @@ label physical:
     
     "Then lower the temperature to 350°F and bake for about 30-40 minutes, or until crust is baked through and golden..."
 
-    #((pie.jpeg appears on screen))
+    show applepie
+    with dissolve
     
     y "Yay! A pie!!!!!!!!!"
 
@@ -134,7 +142,7 @@ label magical:
     
     "You rush off and find the tome, then head to the kitchen..."
     
-    scene bgKitchen # Shows the kitchen
+    scene bgkitchen # Shows the kitchen
     with fade
 
     "With the ancient spellbook in hand, you flip through the pages, and recite the incantation..."
@@ -144,6 +152,7 @@ label magical:
     y "With crust so golden, filling divine, Come forth, oh spirit, make your presence mine!"
     
     show piedemonconfused #((...appearing on screen with a bounce, confused))
+    play music "DemonMusic.mp3" loop fadein 1.0
     with dissolve
     
     d "Hey! Whoa, whoa, whoa! You summoned me? A pie demon? You think I'm just gonna pop up and serve you dessert? This ain't no bakery, sweetheart!"
@@ -168,7 +177,7 @@ label magical:
     y "R-respect…?"
     
     show piedemonhappy #originally this was confused, but we don't have a focused pose so I swapped it around a bit.
-    hide show piedemonneutral
+    hide piedemonneutral
 
     d "Yeah! I'm not just some run-of-the-mill pastry chef, okay? I make the best pie in the whole underworld! You treat me right, and I'll treat you right."
     
@@ -199,6 +208,7 @@ label magical:
     
     hide piedemoncelebratory
     with dissolve
+    stop music fadeout 1.0
 
     "Now it's time to show this demonic pie you have off to the Wizard..."
 
@@ -214,7 +224,7 @@ label ending:
 
     if normalEnd: # Shows ending for physical end
 
-        scene bgKitchen
+        scene bgkitchen
         with fade
         show piewizardneutral
 
@@ -266,16 +276,47 @@ label ending:
         
         show piewizardneutral
         with dissolve
-        show piewizardapproving
+        hide piewizardapproving
         
         w "Either way, it's suffice to say that you have passed your trial. Good work!"
     else: # Shows the magic ending
         
-        scene bgKitchen
+        scene bgkitchen
         with fade
         show piewizardneutral
         
-        "Magic ending starts here"
+        "The Great Wizard walks up and inspects you pie, smirking a little."
+
+        w "Aren't you a little young to be working with devils?"
+
+        "Your eyes immediately shoot down, feeling a tinge of embarrassment as your wizarding master stares down at you.  But you snap out of it as he lets out a little laugh."
+
+        hide piewizardneutral
+        show piewizardapproving
+        with dissolve
+
+        w "No need to be that worried. In fact, I am impressed. Not every day one of my apprentices manage to summon a demon and not get torn to pieces."
+
+        y "Oh?! Why, thank you!"
+
+        w "Now, I did say I was impressed, but..."
+
+        hide piewizardapproving
+        show piewizardscrutinizing
+        with dissolve
+
+        w "...you need to learn to listen to instructions better!"
+
+        w "I told you to bake me a pie, not summon me one!"
+
+        "The Great Wizard looks away for a moment, before calming down again"
+
+        hide piewizardscrutinizing
+        show piewizardneutral
+        with dissolve
+
+        w "Though I can't stay mad I suppose. You have done far greater magic than many before you, so still, good job."
+
     
     "You beam back at him. Either way, it seems all your training paid off well!"
 
